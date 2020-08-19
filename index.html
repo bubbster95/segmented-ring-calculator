@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Wood Turners Calculator</title>
+  <meta name="description" content="Wood Turners Calculator">
+  <meta name="author" content="William Stiles">
+
+  <link rel="stylesheet" href="index.css">
+  <script src="./new-ring/new-ring.js"></script>
+
+</head>
+
+<body>
+    <div class="creation-panel">
+        <div class="input-panel">
+            <p>Input Panel</p>
+            <input class="exterior" type="number" label="Exterior Diameter" placeholder="Exterior Diameter"><h5 class="label">Exterior Diameter</h5></input>
+            <input class="interior" type="number" placeholder="Interior Diameter"/>
+            <input class="segments" type="number" placeholder="Number of Segments"/>
+            <input class="overlap" type="number" placeholder="Overlap Depth"/>
+            <button class="new-ring" type="submit" onclick="newRing()">Add New Ring</button>
+        </div>
+        <div class="visual-aid">
+            <p>Your Design</p>
+            <div class="canvas"></div>
+        </div>
+    </div>
+    <button class="submit-rings" type="submit">Submit Design</button>
+    <div class="blueprint">Blueprint</div> 
+</body>
+</html>

@@ -1,0 +1,77 @@
+body, html {
+    height: 100%;
+    margin: 0%;
+}
+
+p {
+    font-family: impact;
+}
+
+/* Creation Panel */
+.creation-panel {
+    display: grid;
+    grid-template-areas: 'left right right right';
+    grid-gap: 20px;
+    padding: 20px;
+    height: 90%;
+    background-color: lightcyan;
+}
+
+.input-panel, .visual-aid {
+    margin: auto;
+    background-color: lightcoral;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.input-panel {
+    grid-area: left;
+    display: block;
+}
+.visual-aid {
+    position: relative;
+    z-index: 0;
+    grid-area: right;
+}
+
+.input-panel > p, .visual-aid > p {
+    margin: 10px;
+}
+/* Inputs */
+.exterior, .interior, .segments, .overlap, .new-ring {
+    display: block;
+    height: 8%;
+    margin: 8vh auto;
+    border-color: rgba(0,0,0,0);
+    border-radius: 5px;
+    text-align: center;
+} 
+/* Creation Panel End */
+
+.submit-rings {
+    color: rgb(55, 160, 125);
+}
+
+.blueprint {
+    background-color:lightpink;
+}
+
+
+.ring {
+    height: 20px;
+}
+.exterior-ring, .interior-ring {
+    position: relative;
+    margin: auto;
+    height: 20px;
+}
+.interior-ring {
+    top: -20px;
+    z-index: 4;
+    background-color: lightgreen;
+}
+.exterior-ring {
+    z-index: 2;
+    background-color:lightskyblue;
+}
