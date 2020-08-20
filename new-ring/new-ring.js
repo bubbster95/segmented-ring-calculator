@@ -84,6 +84,28 @@ newRing = () => {
     visualAidCanvas.appendChild(ring);
 
     n++;
-    console.log(design, visualAid);
+    console.log(design, visualAidCanvas);
     
+}
+
+//Printing when the submit button is clicked
+submit = () => {
+    //creating content that will be printed in the print window
+    let content = '<html>';
+    content += '<body onload="window.print()">';
+    content += '<h1>Welcome to the Print Window</h1><p>Each page will provide dimensions for each ring in your design!</p>'
+    //for each ring, make a new page when printing
+    Object.keys(design).forEach(i => {
+        content += `<p style="page-break-before: always">${JSON.stringify(design[i])}</p>`
+        content += `<h3>Ring ${i.slice(4)}</h3>`
+    });
+    content += '</body>';
+    content += '</html>';
+    console.log(content)
+    //creating a new window to print
+    let printWindow = window.open('','printWindow','left = 0, top = 0, width = 500, height = 500, toolbar = 0, scrollbars = 0, status = 1');
+    //write the content on the document
+    printWindow.document.write(content);
+    //close the docucment when finished writing -> need this or else onload will never be called
+    printWindow.document.close();
 }
