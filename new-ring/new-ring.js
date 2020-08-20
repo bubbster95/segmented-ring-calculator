@@ -1,7 +1,7 @@
 let design = {};
 let n = 1;
 
-newRing = () => {
+newRing = (loc) => {
     let newExt, newInt, newSeg, overlap = 0;
     
     newExt = document.querySelector('.exterior').value;
@@ -78,12 +78,40 @@ newRing = () => {
     int.className = 'interior-ring';
     int.style.width = (newInt*20) + 'px';
 
+    // Create delete button
+    let remove = document.createElement('button');
+    remove.className = 'remove';
+    remove.innerHTML = 'X';
+    remove.addEventListener('click', removeRing);
+
     // Append ext, int, and ring
     ring.appendChild(ext);
     ring.appendChild(int);
+    ring.appendChild(remove);
+    if (loc == 'top') {
+        visualAidCanvas.prepend(ring);
+    } else {
     visualAidCanvas.appendChild(ring);
+    }
 
     n++;
-    console.log(design, visualAid);
-    
+    console.log(design);
+}
+
+removeRing = (e) => {
+    let thisRing = e.target.parentNode;
+    let thisIdNum = parseInt(thisRing.id.match(/(\d+)/));
+    let numOfRings = parseInt(Object.keys(design).length);
+
+    // Changes reorders design object.
+    for (i = thisIdNum; i <= numOfRings; i++) {
+        design['ring' + i] = design['ring' + (i + 1)];
+    }
+    // Removes last ring
+    delete design['ring' + numOfRings];
+
+    n--
+    console.log('object', design);
+    thisRing.remove();
+    console.log("Removed ", thisRing);
 }

@@ -3,15 +3,33 @@ body, html {
     margin: 0%;
 }
 
-h1 {
-    margin-bottom: 5vh;
-    font-family: impact;
+label {
+    font-family: tahoma;
 }
+
+/* Panel Titles */
+h1 {
+    font-family: impact;
+    align-self: center;
+    text-align: center;
+    margin: 0;
+}
+
+.input-title{
+    grid-area: h1;
+}
+.visual-aid-title {
+    grid-area: visual-aid;
+}
+/* Panel Title End */
 
 /* Creation Panel */
 .creation-panel {
     display: grid;
-    grid-template-areas: 'left right right right';
+    grid-template-rows: 5% 2fr;
+    grid-template-areas: 
+    'h1 visual-aid visual-aid visual-aid'
+    'left right right right';
     grid-gap: 20px;
     padding: 20px;
     height: 90%;
@@ -28,41 +46,70 @@ h1 {
 
 .input-panel {
     grid-area: left;
-    display: block;
-}
-.visual-aid {
-    position: relative;
-    z-index: 0;
-    grid-area: right;
+    display: grid;
+    grid-template-areas: 
+    'ext-label''ext'
+    'int-label''int'
+    'seg-label''seg'
+    'overlap-label''overlap'
+    'new-ring';
+    align-items: end;
 }
 
-.input-panel > p, .visual-aid > p {
-    margin: 10px;
-}
 /* Inputs */
-label {
-    font-family: tahoma;
-}
+.exterior-label { grid-area: ext-label }
+.interior-label { grid-area: int-label }
+.segments-label { grid-area: seg-label }
+.overlap-label { grid-area: overlap-label }
+.exterior { grid-area: ext }
+.interior { grid-area: int }
+.segments { grid-area: seg }
+.overlap { grid-area: overlap }
+
 .exterior, .interior, .segments, .overlap, .new-ring {
-    display: block;
-    height: 7vh;
-    margin: 1vh auto;
-    margin-bottom: 4vh;
+    align-self: stretch;
+    margin: 1% 10%;
     border-color: rgba(0,0,0,0);
     border-radius: 5px;
     text-align: center;
 } 
-/* Creation Panel End */
 
-.submit-rings {
-    color: rgb(55, 160, 125);
+.new-ring {
+    height: 80%;
+    width: 70%;
+    align-self: center;
+    margin: auto;
 }
 
-.blueprint {
-    background-color:lightpink;
+/* Visual Aid */
+.visual-aid {
+    position: relative;
+    display: grid;
+    grid-template-areas:  'canvas';
+    z-index: 0;
+    grid-area: right;
+    align-items: end;
 }
 
+.canvas {
+    position: absolute;
+    grid-area: canvas;
+    overflow: auto;
+    margin: 2vh auto;
+    height: 95%;
+    width: 100%;
+    align-self: end;
+}
 
+.remove {
+    position: relative;
+    display: inline-flex;
+    z-index: 5;
+    float: left;
+    top: -40px;
+    margin-left: 20px;
+    height: 20px;
+}
 .ring {
     height: 20px;
 }
@@ -79,4 +126,14 @@ label {
 .exterior-ring {
     z-index: 2;
     background-color:lightskyblue;
+}
+/* Visusal Aid End */
+/* Creation Panel End */
+
+.submit-rings {
+    color: rgb(55, 160, 125);
+}
+
+.blueprint {
+    background-color:lightpink;
 }
