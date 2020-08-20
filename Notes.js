@@ -7,18 +7,20 @@ function test(x) {
         <button> Get started </button>
     
     O Creation panel
-        O Input Panel 
-            O Exterior Diameter = [User Input]
-            O Interior Diameter = [User Input]
-            O Number of Segments = [User Input]
-            O Overlap Depth = [User Input]
-            O Add New Ring = [submit]
+        0 Input Panel 
+            0 Exterior Diameter = [User Input]
+            0 Interior Diameter = [User Input]
+            0 Number of Segments = [User Input]
+            0 Overlap Depth = [User Input]
+            0 Add New Ring = [submit]
         
         O Visual Aid
             O <div classname='ring{n}'> one for each submmited ring and one live one indicating the input vlaues
-                O <div classname='exterior-diameter' color='blue'> Indicates the Exterior Ring Diameter </div>
-                O <div classname='interior-diameter-true' color='green'> Indicates interior Diameter if Overlap Depth is met </div>
+                0 remove button that removes rings in visual aid and object
+                0 <div classname='exterior-diameter' color='blue'> Indicates the Exterior Ring Diameter </div>
+                0 <div classname='interior-diameter-true' color='green'> Indicates interior Diameter if Overlap Depth is met </div>
                 O <div classname='interior-diameter' color='red'> Indicates interior Diameter if Overlap Depth is not met </div>
+                O arrow buttons to move rings up and down
             </div>
 
         O Submit Rings 
