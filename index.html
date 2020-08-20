@@ -16,15 +16,19 @@
 <body>
     <div class="creation-panel">
         <div class="input-panel">
-            <p>Input Panel</p>
-            <input class="exterior" type="number" label="Exterior Diameter" placeholder="Exterior Diameter"><h5 class="label">Exterior Diameter</h5></input>
+            <h1>Input Panel</h1>
+            <label>Exterior Diameter</label>
+            <input class="exterior" type="number" placeholder="Exterior Diameter"></input>
+            <label>Interior Diameter</label>
             <input class="interior" type="number" placeholder="Interior Diameter"/>
+            <label>Number of Segments</label>
             <input class="segments" type="number" placeholder="Number of Segments"/>
+            <label>Overlap Depth</label>
             <input class="overlap" type="number" placeholder="Overlap Depth"/>
             <button class="new-ring" type="submit" onclick="newRing()">Add New Ring</button>
         </div>
         <div class="visual-aid">
-            <p>Your Design</p>
+            <h1>Your Design</h1>
             <div class="canvas"></div>
         </div>
     </div>

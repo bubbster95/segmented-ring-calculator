@@ -63,18 +63,22 @@ newRing = () => {
         trapHeight: trapHeight
     };
     
+    // Create Ring
     let ring = document.createElement('div');
     ring.className = 'ring';
     ring.id = 'ring' + n;
 
+    // Create exterior diameter
     let ext = document.createElement('div');
     ext.className = 'exterior-ring';
     ext.style.width = (newExt*20) + 'px';
 
+    // Create interior diameter
     let int = document.createElement('div');
     int.className = 'interior-ring';
     int.style.width = (newInt*20) + 'px';
-    // ext.innerHTML = 'blank';
+
+    // Append ext, int, and ring
     ring.appendChild(ext);
     ring.appendChild(int);
     visualAidCanvas.appendChild(ring);

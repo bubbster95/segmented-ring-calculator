@@ -3,7 +3,8 @@ body, html {
     margin: 0%;
 }
 
-p {
+h1 {
+    margin-bottom: 5vh;
     font-family: impact;
 }
 
@@ -39,10 +40,14 @@ p {
     margin: 10px;
 }
 /* Inputs */
+label {
+    font-family: tahoma;
+}
 .exterior, .interior, .segments, .overlap, .new-ring {
     display: block;
-    height: 8%;
-    margin: 8vh auto;
+    height: 7vh;
+    margin: 1vh auto;
+    margin-bottom: 4vh;
     border-color: rgba(0,0,0,0);
     border-radius: 5px;
     text-align: center;
