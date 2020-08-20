@@ -1,5 +1,6 @@
 let design = {};
 let n = 1;
+let ringsOk = true;
 
 newRing = (loc) => {
     let newExt, newInt, newSeg, overlap = 0;
@@ -22,7 +23,6 @@ newRing = (loc) => {
        return;
     } else {
         document.querySelector('.exterior').style.borderColor = 'rgba(0,0,0,0)';
-        console.log("Exterior", newExt);
     };
     if (newInt == '') {
         document.querySelector('.interior').style.borderColor = 'red';
@@ -33,7 +33,6 @@ newRing = (loc) => {
         alert("Interior diamiter is larger then total ring width");
     } else {
         document.querySelector('.interior').style.borderColor = 'rgba(0,0,0,0)';
-        console.log("Interior", newInt);
     };
     if (newSeg == '') {
         document.querySelector('.segments').style.borderColor = 'red';
@@ -41,7 +40,6 @@ newRing = (loc) => {
         return;
     } else {
         document.querySelector('.segments').style.borderColor = 'rgba(0,0,0,0)';
-        console.log("Segments", newSeg);
     };
     if (overlap == '') {
         document.querySelector('.overlap').style.borderColor = 'red';
@@ -49,7 +47,6 @@ newRing = (loc) => {
         return;
     } else {
         document.querySelector('.overlap').style.borderColor = 'rgba(0,0,0,0)';
-        console.log("Overlap", overlap);
     }
 
     design['ring'+n] = {
@@ -67,6 +64,8 @@ newRing = (loc) => {
     let ring = document.createElement('div');
     ring.className = 'ring';
     ring.id = 'ring' + n;
+    ring.addEventListener('mouseover', showOptions)
+    ring.addEventListener("mouseout", hideOptions);
 
     // Create exterior diameter
     let ext = document.createElement('div');
@@ -80,7 +79,7 @@ newRing = (loc) => {
 
     // Create delete button
     let remove = document.createElement('button');
-    remove.className = 'remove';
+    remove.className = 'null-remove';
     remove.innerHTML = 'X';
     remove.addEventListener('click', removeRing);
 
@@ -88,16 +87,44 @@ newRing = (loc) => {
     ring.appendChild(ext);
     ring.appendChild(int);
     ring.appendChild(remove);
-    if (loc == 'top') {
-        visualAidCanvas.prepend(ring);
-    } else {
-    visualAidCanvas.appendChild(ring);
-    }
+    if (loc == 'top') visualAidCanvas.prepend(ring);
+    else visualAidCanvas.appendChild(ring);
 
+    checkRings(newExt, newInt, visualAidCanvas)
     n++;
-    console.log(design);
 }
 
+checkRings = (newExt, newInt, canvas) => {
+    console.log(canvas);
+
+    // let intAbove = 
+    // let intBelow = 
+    // if (newExt >! intBelow && newExt >! intAbove) {
+    //     console.log('we checked')
+    //     return 
+    // }
+}
+    // newExt must be larger then Int of above and below rings by at least overlap
+    // newInt must be smaller then Ext of above and below rings by at least overlap
+        // if either are not true, interior turns red
+
+// Mouse Over Event
+showOptions = (e) => {
+    let xButtonRing = e.path[1].children[2]
+    let xButtonDiv = e.path[0].children[2];
+    if (xButtonDiv) {
+        xButtonDiv.className = 'remove'
+    } else{ xButtonRing.className = 'remove' } 
+}
+hideOptions = (e) => {
+    let xButtonRing = e.path[1].children[2]
+    let xButtonDiv = e.path[0].children[2];
+    if (xButtonDiv) {
+        xButtonDiv.className = 'null-remove'
+    } else { xButtonRing.className = 'null-remove' }
+}
+
+// Remove Button
 removeRing = (e) => {
     let thisRing = e.target.parentNode;
     let thisIdNum = parseInt(thisRing.id.match(/(\d+)/));
@@ -111,7 +138,5 @@ removeRing = (e) => {
     delete design['ring' + numOfRings];
 
     n--
-    console.log('object', design);
     thisRing.remove();
-    console.log("Removed ", thisRing);
 }

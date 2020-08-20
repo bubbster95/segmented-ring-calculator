@@ -81,6 +81,10 @@ h1 {
     margin: auto;
 }
 
+.new-ring:hover {
+    border-color: black;
+}
+
 /* Visual Aid */
 .visual-aid {
     position: relative;
@@ -101,6 +105,10 @@ h1 {
     align-self: end;
 }
 
+.null-remove {
+    display: none;
+}
+
 .remove {
     position: relative;
     display: inline-flex;
@@ -110,8 +118,15 @@ h1 {
     margin-left: 20px;
     height: 20px;
 }
+
+.remove:hover {
+    border-color: black;
+}
 .ring {
     height: 20px;
+}
+.ring:hover {
+    border-color: black;
 }
 .exterior-ring, .interior-ring {
     position: relative;
