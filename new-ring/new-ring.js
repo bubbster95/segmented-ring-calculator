@@ -95,14 +95,24 @@ newRing = (loc) => {
 }
 
 checkRings = (newExt, newInt, canvas) => {
-    console.log(canvas);
+    console.log('canvas', canvas);
+    console.log('design', design);
 
-    // let intAbove = 
-    // let intBelow = 
-    // if (newExt >! intBelow && newExt >! intAbove) {
-    //     console.log('we checked')
-    //     return 
-    // }
+    let rings = canvas.getElementsByTagName('div')
+
+    for (let i = 0; i < rings.length; i += 3) {
+        let currentRing = rings[i].id;
+        console.log('current ring:', currentRing, 'i:', i)
+        // design['ring' + i] = design['ring' + (i + 1)];
+    }
+
+
+
+
+    // let numOfRings = parseInt(Object.keys(design).length);
+    // if (newExt >! intBelow && newExt >! intAbove) {}
+    // let currentRing = document.getElementById('ring' + i);
+    // let thisIdNum = parseInt(thisRing.id.match(/(\d+)/));
 }
     // newExt must be larger then Int of above and below rings by at least overlap
     // newInt must be smaller then Ext of above and below rings by at least overlap
