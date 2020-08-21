@@ -46,4 +46,19 @@ function test(x) {
             !!Calculate length and width of each plank needed per ring
 
             
-*/
+
+
+
+
+"ring" + numberOfRings + 1 
+add top ring
+    is there already a ring?
+        yes: ringId = numberOfRings + 1
+        no: ringId = numberOfRings + 1
+add bottom ring   
+    is there already a ring?
+        yes: 
+            ringId = 1
+            bump id of all rings above
+        no: ringId = numberOfRings + 1     
+*/ 
