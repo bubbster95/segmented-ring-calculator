@@ -36,6 +36,21 @@ h1 {
     background-color: lightcyan;
 }
 
+@media screen and (max-width: 600px) {
+    .creation-panel {
+        grid-template-rows: 2% 4fr 2% 7fr;
+        grid-template-areas: 
+        'h1'
+        'left'
+        'visual-aid'
+        'right';
+    }
+    .exterior, .interior, .segments, .overlap, .new-ring {
+        justify-self: center;
+        width: 50%;
+    } 
+  }
+
 .input-panel, .visual-aid {
     margin: auto;
     background-color: lightcoral;
@@ -89,7 +104,8 @@ h1 {
 .visual-aid {
     position: relative;
     display: grid;
-    grid-template-areas:  'canvas';
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas: 'liveRing' 'canvas';
     z-index: 0;
     grid-area: right;
     align-items: end;
@@ -97,10 +113,10 @@ h1 {
 
 .canvas {
     position: absolute;
-    grid-area: canvas;
+    grid-area: 'canvas';
     overflow: auto;
     margin: 2vh auto;
-    height: 95%;
+    height: 85%;
     width: 100%;
     align-self: end;
 }
@@ -122,25 +138,36 @@ h1 {
 .remove:hover {
     border-color: black;
 }
-.ring {
+.live-ring {
+    grid-area: liveRing;
+}
+.ring, .live-ring {
     height: 20px;
 }
 .ring:hover {
     border-color: black;
 }
-.exterior-ring, .interior-ring {
+.exterior-ring, .interior-ring, .live-view, .int-live-view {
     position: relative;
     margin: auto;
     height: 20px;
 }
+.int-live-view{
+    z-index: 6;
+    background-color: lightgreen;  
+}
+.live-view {
+    z-index: 5;
+    background-color:lightskyblue;
+}
 .interior-ring {
     top: -20px;
     z-index: 4;
-    background-color: lightgreen;
+    background-color: rgb(80, 160, 80);
 }
-.exterior-ring {
+.exterior-ring{
     z-index: 2;
-    background-color:lightskyblue;
+    background-color: rgb(100, 175, 190)
 }
 /* Visusal Aid End */
 /* Creation Panel End */

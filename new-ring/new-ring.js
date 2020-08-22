@@ -16,6 +16,7 @@ newRing = (loc) => {
     extEdge = Math.round(((Math.PI * newExt)/8)*100)/100;
     trapHeight = (newExt-newInt)/2;
 
+
     // Check Input correctness
     if (newExt == '' ) {
         document.querySelector('.exterior').style.borderColor = 'red';
@@ -92,6 +93,23 @@ newRing = (loc) => {
     checkRing()
     console.log('ring complete', design)
     n++;
+}
+
+balls = () => {
+    console.log('we here')
+}
+
+liveView = () => {
+    let liveExt = document.querySelector('.live-view');
+    let liveInt = document.querySelector('.int-live-view');
+    newExt = document.querySelector('.exterior').value;
+    newInt = document.querySelector('.interior').value;
+    // liveExt.style.width = '0px';
+
+    console.log(liveExt, liveInt)
+    liveExt.style.width = (newExt*20) + 'px';
+    liveInt.style.width = (newInt*20) + 'px';
+
 }
 
 bumpId = (removed) => {

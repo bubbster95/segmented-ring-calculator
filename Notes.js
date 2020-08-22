@@ -2,9 +2,9 @@ function test(x) {
     console.log(x);
 }
 /* 
-    landing page "Welcome pop up"
-        "Welcome to the segmented Ring Caluculator, a handy tool for any wood worker to get started on making segmented bowls!"
-        <button> Get started </button>
+    O landing page "Welcome pop up"
+        O "Welcome to the segmented Ring Caluculator, a handy tool for any wood worker to get started on making segmented bowls!"
+        O <button> Get started </button>
     
     O Creation panel
         0 Input Panel 
@@ -19,7 +19,7 @@ function test(x) {
                 0 remove button that removes rings in visual aid and object
                 0 <div classname='exterior-diameter' color='blue'> Indicates the Exterior Ring Diameter </div>
                 0 <div classname='interior-diameter-true' color='green'> Indicates interior Diameter if Overlap Depth is met </div>
-                O <div classname='interior-diameter' color='red'> Indicates interior Diameter if Overlap Depth is not met </div>
+                0 <div classname='interior-diameter' color='red'> Indicates interior Diameter if Overlap Depth is not met </div>
                 O arrow buttons to move rings up and down
             </div>
 

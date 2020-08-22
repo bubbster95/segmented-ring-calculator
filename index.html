@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Wood Turners Calculator</title>
   <meta name="description" content="Wood Turners Calculator">
@@ -18,10 +19,10 @@
         <h1 class='input-title'>Input Panel</h1>
         <h1 class="visual-aid-title">Your Design</h1>
         <div class="input-panel">
-            <label class="exterior-label">Exterior Diameter</label>
-            <input class="exterior" type="number" placeholder="Exterior Diameter"></input>
+            <label class="exterior-label" >Exterior Diameter</label>
+            <input class="exterior" type="number" placeholder="Exterior Diameter" value="0" oninput="liveView()"></input>
             <label class="interior-label">Interior Diameter</label>
-            <input class="interior" type="number" placeholder="Interior Diameter"/>
+            <input class="interior" type="number" placeholder="Interior Diameter" value="0" oninput="liveView()"></imput>
             <label class="segments-label">Number of Segments</label>
             <input class="segments" type="number" placeholder="Number of Segments"/>
             <label class="overlap-label">Overlap Depth</label>
@@ -30,6 +31,11 @@
             <button class="new-ring" type="submit" onclick="newRing('bot')">Add Bottom Ring</button>
         </div>
         <div class="visual-aid">
+            <div class="live-ring">
+                <div class="live-view">
+                    <div class="int-live-view"></div>
+                </div>
+            </div>
             <div class="canvas"></div>
         </div>
     </div>
