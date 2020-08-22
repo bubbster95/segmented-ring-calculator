@@ -26,12 +26,12 @@ h1 {
 /* Creation Panel */
 .creation-panel {
     display: grid;
-    grid-template-rows: 5% 2fr;
+    grid-template-rows: 5% 2fr 0%;
     grid-template-areas: 
     'h1 visual-aid visual-aid visual-aid'
     'left right right right';
     grid-gap: 20px;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     height: 90%;
     background-color: lightcyan;
 }
@@ -81,6 +81,10 @@ h1 {
     margin: auto;
 }
 
+.new-ring:hover {
+    border-color: black;
+}
+
 /* Visual Aid */
 .visual-aid {
     position: relative;
@@ -101,6 +105,10 @@ h1 {
     align-self: end;
 }
 
+.null-remove {
+    display: none;
+}
+
 .remove {
     position: relative;
     display: inline-flex;
@@ -110,8 +118,15 @@ h1 {
     margin-left: 20px;
     height: 20px;
 }
+
+.remove:hover {
+    border-color: black;
+}
 .ring {
     height: 20px;
+}
+.ring:hover {
+    border-color: black;
 }
 .exterior-ring, .interior-ring {
     position: relative;
@@ -131,7 +146,31 @@ h1 {
 /* Creation Panel End */
 
 .submit-rings {
-    color: rgb(55, 160, 125);
+    position: relative;
+    top: -2%;
+    display: grid;
+    grid-template-areas: 'submit';
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    background-color: lightcyan;
+}
+.submit-rings-button {
+    grid-area: submit;
+    height: 70%;
+    width: 80%;
+    align-self: center;
+    justify-self: center;
+    border-color:  rgba(0,0,0,0);
+    border-radius: 5px;
+    background-color: lightcoral;
+    font-family: tahoma;
+    
+}
+.submit-rings-button:hover {
+    background-color: lightcyan;
+    color: lightcoral;
+    border-color: lightcoral;
 }
 
 .blueprint {
