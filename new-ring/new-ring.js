@@ -126,6 +126,9 @@ bumpId = (removed) => {
     } 
 }
 
+    n++;
+    console.log(design, visualAidCanvas);
+    
 addToObject = (ring) => {
     if (design['ring' + ring.id]) {
         // Reorders design object by id.
@@ -200,6 +203,49 @@ removeRing = (e) => {
     console.log('removed', design)
     n--
     thisRing.remove();
+    console.log("Removed ", thisRing);
+
     bumpId(true);
     checkRing(true);
+}
+
+//Printing when the submit button is clicked
+submit = () => {
+    //creating content that will be printed in the print window
+    let content = '<html>';
+    content += '<body onload="window.print()">';
+    content += '<h1>Welcome to the Print Window</h1><p>Each page will provide dimensions for each ring in your design!</p><p>More description about disclaimers, terms of use, instructions, etc.</p>'
+    //for each ring, make a new page when printing
+    Object.keys(design).forEach(i => {
+        console.log(design[i])
+        content += `<p style="page-break-before: always"></p>`;
+        content += `<h1>Segmented Ring Calculator</h1>`;
+        content += `<h2>Ring ${i.slice(4)}</h2>`;
+        content += `<p>Segments: ${design[i].segments}</p>`;
+        content += `<canvas id='canvas${i}' width=600 height=600></canvas>`
+        content += `<script>
+                        let canvas${i} = document.getElementById('canvas${i}');
+                        let context${i} = canvas${i}.getContext('2d');
+
+                        context${i}.beginPath();
+                        context${i}.strokeStyle = 'brown';
+                        context${i}.moveTo(0,0);
+                        context${i}.lineTo(${design[i].extEdge*100},0);
+                        context${i}.lineTo(${(design[i].extEdge*100)/*-((design[i].trapHeight*100)/Math.tan(design[i].extAngle))*/},${design[i].trapHeight*100});
+                        context${i}.lineTo(${(design[i].trapHeight*100)/Math.tan(design[i].extAngle)},${design[i].trapHeight*100});
+                        context${i}.fillStyle = '#DEB887';
+                        context${i}.fill();
+                        context${i}.closePath();
+                        context${i}.stroke();
+                    </script>`
+    });
+    content += '</body>';
+    content += '</html>';
+    //creating a new window to print
+    let printWindow = window.open('','printWindow','left = 0, top = 0, width = 1000, height = 1000, toolbar = 0, scrollbars = 0, status = 1');
+    //write the content on the document
+    printWindow.document.write(content);
+    //close the docucment when finished writing -> need this or else onload will never be called
+    printWindow.document.close();
+    console.log(design);
 }
