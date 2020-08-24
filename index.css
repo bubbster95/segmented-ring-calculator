@@ -1,6 +1,48 @@
 body, html {
     height: 100%;
     margin: 0%;
+    background-color: lightcyan;
+}
+
+canvas {
+    margin-left: 20px;
+}
+
+h2 {
+    font-family: impact;
+    font-size: 50px;
+    margin-left: 20px;
+}
+
+.center {
+    margin: 25px;
+    text-align: left;
+}
+
+.start {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: 20px;
+}
+.start-link {
+    font-family: impact;
+    font-size: 5vw;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    background-color: lightcoral;
+    padding: 20px;
+}
+
+.start-link:hover {
+    color: lightcoral;
+    border: lightcoral;
+    background-color: rgba(0,0,0,0);
+}
+p {
+    font-family: tahoma;
+    margin-left: 20px;
 }
 
 label {
@@ -13,6 +55,7 @@ h1 {
     align-self: center;
     text-align: center;
     margin: 0;
+    font-size: 50px;
 }
 
 .input-title{
@@ -26,29 +69,41 @@ h1 {
 /* Creation Panel */
 .creation-panel {
     display: grid;
-    grid-template-rows: 5% 2fr 0%;
+    grid-template-rows: 2% 2fr 6%;
     grid-template-areas: 
     'h1 visual-aid visual-aid visual-aid'
-    'left right right right';
+    'left right right right' 
+    'submit submit submit submit';
     grid-gap: 20px;
     padding: 20px 20px 0 20px;
-    height: 90%;
-    background-color: lightcyan;
+    height: 100%;
 }
 
 @media screen and (max-width: 600px) {
     .creation-panel {
-        grid-template-rows: 2% 4fr 2% 7fr;
+        grid-template-rows: 2% 4fr 2% 8fr;
         grid-template-areas: 
         'h1'
         'left'
         'visual-aid'
-        'right';
+        'right'
+        'submit';
     }
-    .exterior, .interior, .segments, .overlap, .new-ring {
+    .submit-rings{
+        position: relative;
+    }
+
+
+    .exterior, .interior, .segments, .overlap {
         justify-self: center;
-        width: 50%;
     } 
+    .new-ring {
+        justify-self: center;
+        align-self: center !important;
+        font-size: 10%;
+        width: 25% !important;
+        margin-bottom: 10px !important;
+    }
   }
 
 .input-panel, .visual-aid {
@@ -62,13 +117,14 @@ h1 {
 .input-panel {
     grid-area: left;
     display: grid;
+    grid-template-rows: 4% auto 4% auto 4% auto 4%;
     grid-template-areas: 
     'ext-label''ext'
     'int-label''int'
     'seg-label''seg'
     'overlap-label''overlap'
     'new-ring';
-    align-items: end;
+    align-items: center;
 }
 
 /* Inputs */
@@ -173,33 +229,28 @@ h1 {
 /* Creation Panel End */
 
 .submit-rings {
+    grid-area: submit;
     position: relative;
-    top: -2%;
-    display: grid;
-    grid-template-areas: 'submit';
-    height: 10%;
+    /* top: 25%; */
+    height: 100%;
     width: 100%;
     text-align: center;
-    background-color: lightcyan;
 }
 .submit-rings-button {
-    grid-area: submit;
-    height: 70%;
+    /* position: relative; */
+    margin: auto;
+    height: 100%;
     width: 80%;
-    align-self: center;
-    justify-self: center;
     border-color:  rgba(0,0,0,0);
     border-radius: 5px;
     background-color: lightcoral;
     font-family: tahoma;
+    font-size: 150% ;
     
 }
 .submit-rings-button:hover {
-    background-color: lightcyan;
     color: lightcoral;
     border-color: lightcoral;
+    background-color: rgba(0,0,0,0);
 }
 
-.blueprint {
-    background-color:lightpink;
-}

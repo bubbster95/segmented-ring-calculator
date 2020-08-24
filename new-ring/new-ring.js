@@ -12,8 +12,13 @@ newRing = (loc) => {
     canvas = document.querySelector('.canvas');
 
     angle = (180-(360/newSeg))/2;
-    innerAngle = (360-(angle*2))/2;
+    if (newInt == 0) {
+        innerAngle = 360/newSeg;
+    } else {
+        innerAngle = (360-(angle*2))/2;
+    }
     extEdge = Math.round(((Math.PI * newExt)/8)*100)/100;
+    intEdge = Math.round(((Math.PI * newInt)/8)*100)/100;
     trapHeight = (newExt-newInt)/2;
 
 
@@ -91,12 +96,7 @@ newRing = (loc) => {
     
     addToObject(ring)
     checkRing()
-    console.log('ring complete', design)
     n++;
-}
-
-balls = () => {
-    console.log('we here')
 }
 
 liveView = () => {
@@ -104,9 +104,7 @@ liveView = () => {
     let liveInt = document.querySelector('.int-live-view');
     newExt = document.querySelector('.exterior').value;
     newInt = document.querySelector('.interior').value;
-    // liveExt.style.width = '0px';
 
-    console.log(liveExt, liveInt)
     liveExt.style.width = (newExt*20) + 'px';
     liveInt.style.width = (newInt*20) + 'px';
 
@@ -125,9 +123,6 @@ bumpId = (removed) => {
         topId--; 
     } 
 }
-
-    n++;
-    console.log(design, visualAidCanvas);
     
 addToObject = (ring) => {
     if (design['ring' + ring.id]) {
@@ -145,7 +140,8 @@ addToObject = (ring) => {
         extAngle: angle,
         intAngle: innerAngle,
         extEdge: extEdge,
-        trapHeight: trapHeight
+        intEdge: intEdge,
+        trapHeight: trapHeight,
     };
 }
 
@@ -181,6 +177,7 @@ showOptions = (e) => {
     if (xButtonDiv) xButtonDiv.className = 'remove'
     else xButtonRing.className = 'remove'
 }
+
 hideOptions = (e) => {
     let xButtonRing = e.path[1].children[2]
     let xButtonDiv = e.path[0].children[2];
@@ -203,7 +200,6 @@ removeRing = (e) => {
     console.log('removed', design)
     n--
     thisRing.remove();
-    console.log("Removed ", thisRing);
 
     bumpId(true);
     checkRing(true);
@@ -213,27 +209,47 @@ removeRing = (e) => {
 submit = () => {
     //creating content that will be printed in the print window
     let content = '<html>';
+    content += '<link rel="stylesheet" href="index.css">';
     content += '<body onload="window.print()">';
-    content += '<h1>Welcome to the Print Window</h1><p>Each page will provide dimensions for each ring in your design!</p><p>More description about disclaimers, terms of use, instructions, etc.</p>'
+    content += `
+        <h1>Design Blueprints</h1>
+        <p class="center">Print these pages as a handy guide to building your segmented rings!</p>
+        <p class="center">Trapezoids are to scale. Fair warning program rounds to the nearest hundreths place.</p>
+        <p class="center">Avoid printing page 1 unless you like wasting paper and killing trees.</p>
+        <p class="center">If this helped you in the woodshop please send me a photo of what you made on insta!</p>
+        <p class="center">My Instagram: <a href="https://www.instagram.com/stiles.billy/">@stiles.billy</a></p>
+        <p class="center">Check out some of my work as well, it's not just wood work tho.</p>
+    `
     //for each ring, make a new page when printing
     Object.keys(design).forEach(i => {
+        let extEdge = design[i].extEdge;
+        let intEdge = design[i].intEdge;
+        let trapHeight = design[i].trapHeight;
+        let start = (extEdge - intEdge)/2;
+        let res = 96;
         console.log(design[i])
         content += `<p style="page-break-before: always"></p>`;
-        content += `<h1>Segmented Ring Calculator</h1>`;
         content += `<h2>Ring ${i.slice(4)}</h2>`;
         content += `<p>Segments: ${design[i].segments}</p>`;
+        content += `<p>Long Side: ${design[i].extEdge}</p>`;
+        content += `<p>Short Side: ${design[i].intEdge}</p>`;
+        content += `<p>Trapizoid Height: ${design[i].trapHeight}</p>`;
+        content += `<p>Long Side Angle: ${design[i].extAngle}</p>`;
+        content += `<p>Short Side Angle: ${design[i].intAngle}</p>`;
         content += `<canvas id='canvas${i}' width=600 height=600></canvas>`
         content += `<script>
                         let canvas${i} = document.getElementById('canvas${i}');
                         let context${i} = canvas${i}.getContext('2d');
 
                         context${i}.beginPath();
-                        context${i}.strokeStyle = 'brown';
-                        context${i}.moveTo(0,0);
-                        context${i}.lineTo(${design[i].extEdge*100},0);
-                        context${i}.lineTo(${(design[i].extEdge*100)/*-((design[i].trapHeight*100)/Math.tan(design[i].extAngle))*/},${design[i].trapHeight*100});
-                        context${i}.lineTo(${(design[i].trapHeight*100)/Math.tan(design[i].extAngle)},${design[i].trapHeight*100});
-                        context${i}.fillStyle = '#DEB887';
+                        context${i}.strokeStyle = 'black';
+
+                        context${i}.moveTo(${start*res},0);
+                        context${i}.lineTo(${((start*res) + (intEdge*res))},0);
+                        context${i}.lineTo(${((intEdge*res) + (start*res) +(start*res))}, ${trapHeight*res});
+                        context${i}.lineTo(0, ${trapHeight*res});
+
+                        context${i}.fillStyle = 'lightcoral';
                         context${i}.fill();
                         context${i}.closePath();
                         context${i}.stroke();
@@ -242,10 +258,9 @@ submit = () => {
     content += '</body>';
     content += '</html>';
     //creating a new window to print
-    let printWindow = window.open('','printWindow','left = 0, top = 0, width = 1000, height = 1000, toolbar = 0, scrollbars = 0, status = 1');
+    let printWindow = window.open('left = 0, top = 0, width = 1000, height = 1000, toolbar = 0, scrollbars = 0, status = 1');
     //write the content on the document
     printWindow.document.write(content);
     //close the docucment when finished writing -> need this or else onload will never be called
     printWindow.document.close();
-    console.log(design);
 }

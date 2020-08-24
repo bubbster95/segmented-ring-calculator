@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wood Turners Calculator</title>
+  <meta name="description" content="Wood Turners Calculator">
+  <meta name="author" content="William Stiles">
+
+  <link rel="stylesheet" href="index.css">
+  <script src="./new-ring/new-ring.js"></script>
+
+</head>
+
+<body>
+    <div class="creation-panel">
+        <h1 class='input-title'>Input Panel</h1>
+        <h1 class="visual-aid-title">Your Design</h1>
+        <div class="input-panel">
+            <label class="exterior-label" >Exterior Diameter</label>
+            <input class="exterior" type="number" placeholder="Exterior Diameter" oninput="liveView()" required></input>
+            <label class="interior-label">Interior Diameter</label>
+            <input class="interior" type="number" placeholder="Interior Diameter" oninput="liveView()" required></imput>
+            <label class="segments-label">Number of Segments</label>
+            <input class="segments" type="number" placeholder="Number of Segments" value="8" required/>
+            <label class="overlap-label">Overlap Depth</label>
+            <input class="overlap" type="number" placeholder="Overlap Depth" value="1" required/>
+            <button class="new-ring" type="submit" onclick="newRing('top')">Add Top Ring</button>
+            <button class="new-ring" type="submit" onclick="newRing('bot')">Add Bottom Ring</button>
+        </div>
+        <div class="visual-aid">
+            <div class="live-ring">
+                <div class="live-view">
+                    <div class="int-live-view"></div>
+                </div>
+            </div>
+            <div class="canvas"></div>
+        </div>
+        <div class="submit-rings">
+            <button class="submit-rings-button" type="submit" onclick="submit()">Submit Design</button>
+        </div>
+    </div>
+</body>
+</html>
