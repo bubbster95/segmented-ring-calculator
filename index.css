@@ -100,8 +100,8 @@ h1 {
     .new-ring {
         justify-self: center;
         align-self: center !important;
-        font-size: 10%;
-        width: 25% !important;
+        /* font-size: 10%; */
+        width: 30% !important;
         margin-bottom: 10px !important;
     }
   }
