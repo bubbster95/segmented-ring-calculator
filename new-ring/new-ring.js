@@ -221,34 +221,63 @@ hidePopUp = () => {
 submit = () => {
     //creating content that will be printed in the print window
     let content = '<html>';
-    content += '<link rel="stylesheet" href="index.css">';
-    content += '<body onload="window.print()">';
     content += `
-        <h1>Design Blueprints</h1>
-        <p class="center">Print these pages as a handy guide to building your segmented rings!</p>
-        <p class="center">Trapezoids are to scale. Fair warning program rounds to the nearest hundreths place.</p>
-        <p class="center">Avoid printing page 1 unless you like wasting paper and killing trees.</p>
-        <p class="center">If this helped you in the woodshop please send me a photo of what you made on insta!</p>
-        <p class="center">My Instagram: <a href="https://www.instagram.com/stiles.billy/">@stiles.billy</a></p>
-        <p class="center">Check out some of my work as well, it's not just wood work tho.</p>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Design Blueprints</title>
+        <meta name="description" content="Design Blueprints">
+        <meta name="author" content="William Stiles">
+
+        <link rel="stylesheet" href="index.css">
+        <body onload="window.print()">
+        <div class="print-page">
+            <h1>Design Blueprints</h1>
+            <p class="center">Print the following pages as a handy guide to building your segmented rings!</p>
+            <p class="center">Trapezoids are drawn to scale. Fair warning program rounds to the nearest hundreths place, and drawing scale changes slightly depending on screen resolution.</p>
+            <p class="center">Avoid printing page 1 unless you like wasting paper and killing trees.</p>
+            <p class="center">If this helped you in the woodshop please send me a photo of what you made on insta!</p>
+            <p class="center">My Instagram: <a href="https://www.instagram.com/stiles.billy/">@stiles.billy</a></p>
+        </div>
     `
-    //for each ring, make a new page when printing
+    content += `<p style="page-break-before: always"></p>`;
+    
+    content += `<table style="width: 90%">
+        <tr>
+            <th>Ring</th>
+            <th>Segments</th>
+            <th>Long Side</th>
+            <th>Short Side</th>
+            <th>Trapizoid Height</th>
+            <th>Long Side Angle</th>
+            <th>Short Side Angle</th>
+        </tr> 
+    `
+    //for each blueprint row
+    Object.keys(design).forEach(i => {
+
+        content += `<tr>
+        <td>${i.slice(4)}</td>
+        <td>${design[i].segments}</td>
+        <td>${design[i].extEdge}"</td>
+        <td>${design[i].intEdge}"</td>
+        <td>${design[i].trapHeight}"</td>
+        <td>${design[i].extAngle}&deg</td>
+        <td>${design[i].intAngle}&deg</td>
+        </tr>`
+    });
+
+    content += `</table>`;
+    content += `<p style="page-break-before: always"></p>`;
+
+    // for each trapizoid
     Object.keys(design).forEach(i => {
         let extEdge = design[i].extEdge;
         let intEdge = design[i].intEdge;
         let trapHeight = design[i].trapHeight;
         let start = (extEdge - intEdge)/2;
+        let ringNum = (i.match(/\d/g)).reduce((a, b) => a + b + '');
         let res = 96;
-        console.log(design[i])
-        content += `<p style="page-break-before: always"></p>`;
-        content += `<h2>Ring ${i.slice(4)}</h2>`;
-        content += `<p>Segments: ${design[i].segments}</p>`;
-        content += `<p>Long Side: ${design[i].extEdge}</p>`;
-        content += `<p>Short Side: ${design[i].intEdge}</p>`;
-        content += `<p>Trapizoid Height: ${design[i].trapHeight}</p>`;
-        content += `<p>Long Side Angle: ${design[i].extAngle}</p>`;
-        content += `<p>Short Side Angle: ${design[i].intAngle}</p>`;
-        content += `<canvas id='canvas${i}' width=600 height=600></canvas>`
+        content += `<canvas id='canvas${i}' width=${extEdge*res} height=${trapHeight*res}></canvas>`
         content += `<script>
                         let canvas${i} = document.getElementById('canvas${i}');
                         let context${i} = canvas${i}.getContext('2d');
@@ -263,14 +292,12 @@ submit = () => {
 
                         context${i}.closePath();
                         context${i}.stroke();
+                        context${i}.font = "30px tahoma";
+                        context${i}.fillText("Ring ${ringNum}", ${((start+intEdge)/2)*res}, ${(trapHeight)*res - 20})
                     </script>`
     });
     content += '</body>';
     content += '</html>';
-    //creating a new window to print
-    let printWindow = window.open('left = 0, top = 0, width = 1000, height = 1000, toolbar = 0, scrollbars = 0, status = 1');
     //write the content on the document
-    printWindow.document.write(content);
-    //close the docucment when finished writing -> need this or else onload will never be called
-    printWindow.document.close();
+    window.open().document.write(content);
 }
