@@ -219,7 +219,7 @@ canvas {
     .creation-panel {
         height: 100%;
         grid-gap: 2%;
-        grid-template-rows: 10% 10% 45% 10% 50% 10%;
+        grid-template-rows: 10% 5% 45% 5% 50% 10%;
         grid-template-columns: 100%;
         grid-template-areas:
         'helpButton' 
@@ -241,6 +241,7 @@ canvas {
         align-items: center;
     }
 
+    h1 { font-size: 20px;}
     .live-ring { margin-top: 2vh; }
 
     .canvas { top: 30px;}
