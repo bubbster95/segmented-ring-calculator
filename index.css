@@ -219,15 +219,14 @@ canvas {
     .creation-panel {
         height: 100%;
         grid-gap: 2%;
-        grid-template-rows: 10% 5% 45% 5% 50% 10%;
-        grid-template-columns: 100%;
-        grid-template-areas:
-        'helpButton' 
-        'h1'
-        'left'
-        'visual-aid'
-        'right'
-        'submit';
+        grid-template-rows: 5% 45% 5% 50% 10%;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: 
+        'h1 h1'
+        'left left'
+        'visual-aid visual-aid'
+        'right right'
+        'submit helpButton';
     }
     .input-panel {
         display: grid;
