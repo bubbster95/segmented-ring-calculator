@@ -240,6 +240,7 @@ canvas {
         align-items: center;
     }
 
+    .submit-rings, .help{ position: relative; }
     h1 { font-size: 20px;}
     .live-ring { margin-top: 2vh; }
 
