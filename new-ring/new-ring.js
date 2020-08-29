@@ -20,7 +20,7 @@ newRing = (loc) => {
     extEdge = Math.round(((Math.PI * newExt)/8)*100)/100;
     intEdge = Math.round(((Math.PI * newInt)/8)*100)/100;
     trapHeight = (newExt-newInt)/2;
-
+    let defaultColor = 'rgba(140, 120, 65, 0.5)';
 
     // Check Input correctness
     if (newExt == '' ) {
@@ -28,7 +28,7 @@ newRing = (loc) => {
         alert("Missing exterior diameter!");
         return;
      } else {
-         document.querySelector('.exterior').style.borderColor = 'rgba(0,0,0,0)';
+         document.querySelector('.exterior').style.borderColor = defaultColor;
      };
      if (newInt == '') {
          document.querySelector('.interior').style.borderColor = 'red';
@@ -38,21 +38,21 @@ newRing = (loc) => {
          document.querySelector('.interior').style.borderColor = 'orange';
          alert("Interior diamiter is larger then total ring width");
      } else {
-         document.querySelector('.interior').style.borderColor = 'rgba(0,0,0,0)';
+         document.querySelector('.interior').style.borderColor = defaultColor;
      };
      if (newSeg == '') {
          document.querySelector('.segments').style.borderColor = 'red';
          alert("Missing number of segments!");
          return;
      } else {
-         document.querySelector('.segments').style.borderColor = 'rgba(0,0,0,0)';
+         document.querySelector('.segments').style.borderColor = defaultColor;
      };
      if (overlap == '') {
          document.querySelector('.overlap').style.borderColor = 'red';
          alert("Missing overlap depth!");
          return;
      } else {
-         document.querySelector('.overlap').style.borderColor = 'rgba(0,0,0,0)';
+         document.querySelector('.overlap').style.borderColor = defaultColor;
      }
 
     // Create Ring
@@ -153,7 +153,7 @@ checkRing = (remove) => {
     else stop = n-1;
 
     for (i = 0; i <= stop; i++) {
-        rings[i].childNodes[1].style.backgroundColor = 'lightgreen';
+        rings[i].childNodes[1].style.backgroundColor = 'rgba(144, 238, 144, 0.5)';
         let thisExt = design['ring' + rings[i].id].ext;
         let thisInt = design['ring' + rings[i].id].int;
         let thisOver = design['ring' + rings[i].id].overlap;
@@ -163,8 +163,7 @@ checkRing = (remove) => {
             let nextInt = design['ring' + rings[i-1].id].int;
             let nextOver = design['ring' + rings[i-1].id].overlap;
             if (thisExt - thisOver < nextInt || nextExt-nextOver < thisInt){
-                rings[i].childNodes[1].style.backgroundColor = 'red';
-                console.log("u broke", rings[i])
+                rings[i].childNodes[1].style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
             }
         } 
     }
@@ -174,6 +173,8 @@ checkRing = (remove) => {
 showOptions = (e) => {
     let xButtonRing = e.path[1].children[2]
     let xButtonDiv = e.path[0].children[2];
+    console.log('hello?')
+    console.log(xButtonRing, xButtonDiv)
     if (xButtonDiv) xButtonDiv.className = 'remove'
     else xButtonRing.className = 'remove'
 }
@@ -203,6 +204,17 @@ removeRing = (e) => {
 
     bumpId(true);
     checkRing(true);
+}
+
+helpPopUp = () => {
+    let popUp = document.querySelector('.help-pop-up');
+    popUp.style.display = 'block';
+    popUp.scrollIntoView();
+}
+
+hidePopUp = () => {
+    let popUp = document.querySelector('.help-pop-up');
+    popUp.style.display = 'none';
 }
 
 //Printing when the submit button is clicked
@@ -249,8 +261,6 @@ submit = () => {
                         context${i}.lineTo(${((intEdge*res) + (start*res) +(start*res))}, ${trapHeight*res});
                         context${i}.lineTo(0, ${trapHeight*res});
 
-                        context${i}.fillStyle = 'lightcoral';
-                        context${i}.fill();
                         context${i}.closePath();
                         context${i}.stroke();
                     </script>`

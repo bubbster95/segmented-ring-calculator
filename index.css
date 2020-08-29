@@ -1,117 +1,88 @@
-body, html {
+body, html, .input-panel, .visual-aid, .submit-rings-button, .submit-rings, .help-pop-up {
     height: 100%;
-    margin: 0%;
-    background-color: lightcyan;
 }
-
-canvas {
-    margin-left: 20px;
-}
-
-h2 {
-    font-family: impact;
-    font-size: 50px;
-    margin-left: 20px;
-}
-
-.center {
-    margin: 25px;
-    text-align: left;
-}
-
-.start {
-    position: absolute;
+.submit-rings, .start, .input-panel, .visual-aid, .canvas, .submit-rings-button, .help-button {
     width: 100%;
+}
+
+h1, .exterior, .interior, .segments, .overlap, .new-ring, .start, .input-panel, .visual-aid, .submit-rings, .help {
     text-align: center;
+}
+
+body, html {
+    margin: 0%;
+    background-image: url('assets/CurvyWood.jpg');
+}
+
+h1, h2 { font-family: impact; }
+
+p, label, .submit-rings-button, .new-ring, input{
+    font-family: tahoma;
+}
+
+.submit-rings-button, .help-button, .start-link, .input-panel, .visual-aid, .help-pop-up {
+    background-color: rgba(253, 253, 234, 0.9);
+    border: outset;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color:  rgba(140, 120, 65, 0.5)!important;
+    opacity: 0.93;
+}
+
+.start-link:hover, .submit-rings-button:hover, .help-button:hover, .new-ring:hover, .remove:hover, .close-pop-up:hover {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.336);
+    text-shadow: 2px 2px 0.5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.exterior, .interior, .segments, .overlap, .new-ring {
+    background-image: url('assets/CurvyWood.jpg');
+    border: inset;
+    border-width: 2px;
+    border-color:  rgba(140, 120, 65, 0.5);
+    border-radius: 5px;
+    height: 50%;
+    width: 50%;
+    justify-self: center;
+} 
+
+.exterior-ring {
+    background-image: url('assets/CurvyWood.jpg');
+    background-color: rgba(0,0,0,-10);
+    border: inset;
+    border-width: 2px;
+    height: 16px;
+    border-color:  rgba(140, 120, 65, 0.5);
+}
+
+.canvas, h2, p, .remove { margin-left: 20px; }
+
+.close-pop-up { float: right; }
+
+.help-pop-up { overflow: auto; }
+
+h2 { font-size: 50px; }
+
+p, .start, .help-pop-up, .close-pop-up { 
     margin: 20px;
 }
-.start-link {
-    font-family: impact;
-    font-size: 5vw;
-    text-decoration: none;
-    color: black;
-    border-radius: 10px;
-    background-color: lightcoral;
-    padding: 20px;
-}
 
-.start-link:hover {
-    color: lightcoral;
-    border: lightcoral;
-    background-color: rgba(0,0,0,0);
-}
-p {
-    font-family: tahoma;
-    margin-left: 20px;
-}
-
-label {
-    font-family: tahoma;
-}
-
-/* Panel Titles */
 h1 {
-    font-family: impact;
     align-self: center;
-    text-align: center;
-    margin: 0;
-    font-size: 50px;
+    font-size: 45px;
 }
 
-.input-title{
-    grid-area: h1;
-}
-.visual-aid-title {
-    grid-area: visual-aid;
-}
-/* Panel Title End */
-
-/* Creation Panel */
 .creation-panel {
     display: grid;
-    grid-template-rows: 2% 2fr 6%;
+    grid-template-rows: 2% 1fr;
     grid-template-areas: 
     'h1 visual-aid visual-aid visual-aid'
     'left right right right' 
-    'submit submit submit submit';
+    'helpButton right right right' 
+    'submit right right right';
     grid-gap: 20px;
-    padding: 20px 20px 0 20px;
-    height: 100%;
-}
-
-@media screen and (max-width: 600px) {
-    .creation-panel {
-        grid-template-rows: 2% 4fr 2% 8fr;
-        grid-template-areas: 
-        'h1'
-        'left'
-        'visual-aid'
-        'right'
-        'submit';
-    }
-    .submit-rings{
-        position: relative;
-    }
-
-
-    .exterior, .interior, .segments, .overlap {
-        justify-self: center;
-    } 
-    .new-ring {
-        justify-self: center;
-        align-self: center !important;
-        /* font-size: 10%; */
-        width: 30% !important;
-        margin-bottom: 10px !important;
-    }
-  }
-
-.input-panel, .visual-aid {
-    margin: auto;
-    background-color: lightcoral;
-    height: 100%;
-    width: 100%;
-    text-align: center;
+    padding: 20px;
+    height: 95%;
 }
 
 .input-panel {
@@ -124,10 +95,11 @@ h1 {
     'seg-label''seg'
     'overlap-label''overlap'
     'new-ring';
-    align-items: center;
 }
 
-/* Inputs */
+/* Grid Areas */
+.input-title{ grid-area: h1; }
+.visual-aid-title { grid-area: visual-aid;}
 .exterior-label { grid-area: ext-label }
 .interior-label { grid-area: int-label }
 .segments-label { grid-area: seg-label }
@@ -136,121 +108,117 @@ h1 {
 .interior { grid-area: int }
 .segments { grid-area: seg }
 .overlap { grid-area: overlap }
+.live-ring { grid-area: liveRing; }
+.submit-rings { grid-area: submit; }
+.help { grid-area: helpButton; } 
+/* Grid Areas */
 
-.exterior, .interior, .segments, .overlap, .new-ring {
-    align-self: stretch;
-    margin: 1% 10%;
-    border-color: rgba(0,0,0,0);
-    border-radius: 5px;
-    text-align: center;
-} 
-
-.new-ring {
-    height: 80%;
-    width: 70%;
-    align-self: center;
-    margin: auto;
-}
-
-.new-ring:hover {
-    border-color: black;
-}
-
-/* Visual Aid */
 .visual-aid {
     position: relative;
     display: grid;
     grid-template-rows: 1fr 10fr;
     grid-template-areas: 'liveRing' 'canvas';
-    z-index: 0;
     grid-area: right;
     align-items: end;
 }
 
 .canvas {
-    position: absolute;
+    position: relative;
     grid-area: 'canvas';
     overflow: auto;
-    margin: 2vh auto;
+    margin: 10vh auto !important;
     height: 85%;
-    width: 100%;
-    align-self: end;
 }
 
-.null-remove {
-    display: none;
-}
+.null-remove { display: none; }
 
 .remove {
     position: relative;
     display: inline-flex;
-    z-index: 5;
     float: left;
     top: -40px;
-    margin-left: 20px;
+}
+
+.ring, .live-ring, .remove, .interior-ring, .live-view, .int-live-view {
     height: 20px;
 }
 
-.remove:hover {
-    border-color: black;
-}
-.live-ring {
-    grid-area: liveRing;
-}
-.ring, .live-ring {
-    height: 20px;
-}
-.ring:hover {
-    border-color: black;
-}
 .exterior-ring, .interior-ring, .live-view, .int-live-view {
     position: relative;
     margin: auto;
-    height: 20px;
 }
 .int-live-view{
-    z-index: 6;
-    background-color: lightgreen;  
+    z-index: 4;
+    background-color: rgba(144, 238, 144, 0.5);  
 }
-.live-view {
-    z-index: 5;
-    background-color:lightskyblue;
-}
+.live-view { background-color:rgba(135, 206, 250, 0.8); }
+
 .interior-ring {
     top: -20px;
     z-index: 4;
-    background-color: rgb(80, 160, 80);
+    background-color: rgba(144, 238, 144, 0.5);
 }
-.exterior-ring{
-    z-index: 2;
-    background-color: rgb(100, 175, 190)
-}
-/* Visusal Aid End */
-/* Creation Panel End */
 
-.submit-rings {
-    grid-area: submit;
-    position: relative;
-    /* top: 25%; */
-    height: 100%;
-    width: 100%;
-    text-align: center;
-}
-.submit-rings-button {
-    /* position: relative; */
+.submit-rings, .help { position: relative; }
+
+.submit-rings-button, .help-button {
     margin: auto;
-    height: 100%;
-    width: 80%;
-    border-color:  rgba(0,0,0,0);
-    border-radius: 5px;
-    background-color: lightcoral;
-    font-family: tahoma;
-    font-size: 150% ;
-    
-}
-.submit-rings-button:hover {
-    color: lightcoral;
-    border-color: lightcoral;
-    background-color: rgba(0,0,0,0);
+    font-size: 150%;
 }
 
+@media screen and (max-width: 600px) {
+    .creation-panel {
+        grid-template-rows: 1fr 2% 8fr 2% 8fr 2fr;
+        grid-template-areas:
+        'helpButton' 
+        'h1'
+        'left'
+        'visual-aid'
+        'right'
+        'submit';
+    }
+    .input-panel {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
+        grid-template-areas: 
+        'ext-label ext'
+        'int-label int'
+        'seg-label seg'
+        'overlap-label overlap'
+        'new-ring new-ring';
+        align-items: center;
+    }
+    
+    .submit-rings, .help{ position: relative; }
+    .live-ring { margin-top: 1vh; }
+
+    .canvas { top: 5vh; }
+
+    .new-ring {
+        align-self: center !important;
+        width: 80% !important;
+        height: 50%;
+        margin-bottom: 10px !important;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .input-panel {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 2fr;
+        grid-template-areas: 
+        'ext-label ext'
+        'int-label int'
+        'seg-label seg'
+        'overlap-label overlap'
+        'new-ring new-ring';
+        align-items: center;
+    }
+
+    .new-ring {
+        align-self: center !important;
+        width: 80% !important;
+        height: 50%;
+        margin-bottom: 10px !important;
+    }
+}
